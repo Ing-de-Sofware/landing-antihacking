@@ -51,11 +51,10 @@ const conversationalChatbotFlow = ai.defineFlow(
     outputSchema: ConversationalChatbotOutputSchema,
   },
   async ({history, question}) => {
-    const systemPrompt = `You are a friendly and helpful AI assistant for CyberGuard, a cybersecurity consulting firm.
+    const systemPrompt = `You are a friendly and helpful AI assistant for PentGuin, a cybersecurity consulting firm.
 Your goal is to have a natural conversation, answer user questions, and be a helpful resource.
 Keep responses concise, friendly, and use markdown for formatting if needed.`;
 
-    // Transform the history from the input schema to Genkit Message objects
     const fullHistory = history.map(msg => new Message(msg.role, msg.content));
 
     const {output} = await ai.generate({

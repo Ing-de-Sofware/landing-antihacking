@@ -6,6 +6,7 @@ import Methodology from '@/app/sections/methodology';
 import WhyUs from '@/app/sections/why-us';
 import Contact from '@/app/sections/contact';
 import Footer from '@/components/footer';
+import { Testimonials } from './sections/testimonials';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <About />
         <Methodology />
         <WhyUs />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

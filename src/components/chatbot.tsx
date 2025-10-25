@@ -15,7 +15,7 @@ type Message = {
   text: string;
 };
 
-const initialBotMessage = "¡Hola! Soy el asistente de IA de CyberGuard. ¿En qué puedo ayudarte hoy?";
+const initialBotMessage = "¡Hola! Soy el asistente de IA de PentGuin. ¿En qué puedo ayudarte hoy?";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
@@ -72,7 +72,7 @@ export default function Chatbot() {
   return (
     <Card className="w-full shadow-2xl shadow-primary/10 border-border">
       <CardContent className="p-4">
-        <div className="space-y-4 h-96 overflow-y-auto p-4 mb-4 rounded-lg bg-background/50">
+        <div className="space-y-4 h-96 overflow-y-auto p-4 mb-4 rounded-lg bg-background">
           {messages.map((message, index) => (
             <div
               key={index}
@@ -83,7 +83,7 @@ export default function Chatbot() {
             >
               {message.sender === 'bot' && (
                 <Avatar className="h-8 w-8 border-2 border-primary">
-                  <AvatarFallback className="bg-transparent"><Bot className="text-primary" /></AvatarFallback>
+                  <AvatarFallback className="bg-transparent text-primary"><Bot /></AvatarFallback>
                 </Avatar>
               )}
               <div
@@ -91,7 +91,7 @@ export default function Chatbot() {
                   'max-w-xs rounded-lg px-4 py-3 text-sm md:max-w-md',
                   message.sender === 'user'
                     ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-foreground'
+                    : 'bg-muted text-muted-foreground'
                 )}
               >
                 <p>{message.text}</p>
@@ -106,7 +106,7 @@ export default function Chatbot() {
           {isLoading && (
             <div className="flex items-start gap-3 justify-start animate-in fade-in">
                <Avatar className="h-8 w-8 border-2 border-primary">
-                  <AvatarFallback className="bg-transparent"><Bot className="text-primary" /></AvatarFallback>
+                  <AvatarFallback className="bg-transparent text-primary"><Bot /></AvatarFallback>
                 </Avatar>
                 <div className="max-w-xs rounded-lg px-4 py-3 text-sm md:max-w-md bg-muted text-muted-foreground">
                     <div className="flex items-center justify-center gap-2 h-5">
