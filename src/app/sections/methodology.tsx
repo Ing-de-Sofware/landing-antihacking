@@ -24,7 +24,7 @@ export default function Methodology() {
     }
   ];
   return (
-    <section id="methodology" className="py-20 lg:py-32">
+    <section id="methodology" className="py-20 lg:py-32 section-animate">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center mb-16">
           <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm font-medium text-primary mb-4">Nuestro Proceso</div>
@@ -39,7 +39,7 @@ export default function Methodology() {
                 <div className="relative z-10 flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full bg-card border-4 border-primary text-primary text-3xl font-bold">
                   {item.phase}
                 </div>
-                <Card className={`w-full ${index % 2 === 1 ? 'text-right' : ''}`}>
+                <Card className={`w-full ${index % 2 === 1 ? 'lg:text-right' : ''}`}>
                   <CardHeader>
                     <CardTitle className="text-2xl">{item.title}</CardTitle>
                   </CardHeader>

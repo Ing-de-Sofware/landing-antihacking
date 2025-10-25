@@ -15,7 +15,7 @@ function findImage(id: string) {
 
 export default function About() {
   return (
-    <section id="about" className="py-20 lg:py-32">
+    <section id="about" className="py-20 lg:py-32 section-animate">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid gap-16 md:grid-cols-2 md:gap-24 items-center">
           <div className="space-y-6">

@@ -26,7 +26,7 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section id="why-us" className="bg-muted/30 py-20 lg:py-32">
+    <section id="why-us" className="bg-muted/50 py-20 lg:py-32 section-animate">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="text-center mb-16">
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm font-medium text-primary mb-4">¿Por qué Nosotros?</div>

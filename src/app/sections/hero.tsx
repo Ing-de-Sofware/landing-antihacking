@@ -3,8 +3,8 @@ import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="hero" className="container mx-auto flex min-h-[calc(100vh-5rem)] max-w-7xl flex-col items-center justify-center gap-10 px-4 py-20 text-center md:px-6">
-       <div className="flex items-center gap-2 rounded-full border border-primary/30 bg-card px-4 py-2 text-sm text-primary-foreground bg-primary">
+    <section id="hero" className="container mx-auto flex min-h-[calc(100vh-5rem)] max-w-7xl flex-col items-center justify-center gap-10 px-4 py-20 text-center md:px-6 section-animate">
+       <div className="flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-primary">
         <ShieldCheck className="h-5 w-5" />
         <span>Seguridad de Nivel Élite</span>
       </div>

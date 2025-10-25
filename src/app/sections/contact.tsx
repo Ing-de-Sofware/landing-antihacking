@@ -2,7 +2,7 @@ import Chatbot from '@/components/chatbot';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-muted/30">
+    <section id="contact" className="py-20 lg:py-32 bg-muted/50 section-animate">
       <div className="container mx-auto max-w-3xl px-4 md:px-6">
         <div className="text-center mb-12">
           <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm font-medium text-primary mb-4">Contacto</div>
