@@ -3,26 +3,32 @@
     {
       "id": "team-lead",
       "description": "A portrait of the team lead.",
-      "imageUrl": "https://images.unsplash.com/photo-1513759565286-20e9c5fad06b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBsZWFkZXJ8ZW58MHx8fHwxNzYxMzY0MTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1510825752704-60a87ab66189?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBsZWFkZXJ8ZW58MHx8fHwxNzYxMzY0MTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person leader"
     },
     {
       "id": "project-coordinator",
       "description": "A portrait of the project coordinator.",
-      "imageUrl": "https://images.unsplash.com/photo-1584940121396-17ed95a72c29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXJzb24lMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzYxMzUzODA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1570170609489-43197f518df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzYxMzUzODA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person professional"
     },
     {
       "id": "security-specialist-1",
       "description": "A portrait of a security specialist.",
-      "imageUrl": "https://images.unsplash.com/photo-1665174273418-d384296ac09a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBoYWNrZXJ8ZW58MHx8fHwxNzYxMzY0MTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1660644807804-ffacfd7a4137?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGVyc29uJTIwaGFja2VyfGVufDB8fHx8MTc2MTM2NDE2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person hacker"
     },
     {
       "id": "security-specialist-2",
       "description": "A portrait of another security specialist.",
-      "imageUrl": "https://images.unsplash.com/photo-1499365094259-713ae26508c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjB0ZWNofGVufDB8fHx8MTc2MTMyMjY5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1738707060473-a23914a02d8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjB0ZWNofGVufDB8fHx8MTc2MTMyMjY5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person tech"
+    },
+    {
+      "id": "ethical-hacker",
+      "description": "A portrait of an ethical hacker.",
+      "imageUrl": "https://images.unsplash.com/photo-1636718481021-988211dc2031?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwZXJzb24lMjBzZWN1cml0eXxlbnwwfHx8fDE3NjEzNjYwMTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person security"
     }
   ]
 }
