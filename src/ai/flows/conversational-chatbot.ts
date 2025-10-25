@@ -56,11 +56,7 @@ Your goal is to have a natural conversation, answer user questions, and be a hel
 Keep responses concise, friendly, and use markdown for formatting if needed.`;
 
     const messages = [
-      new Message('system', [
-        {
-          text: systemPrompt,
-        },
-      ]),
+      new Message('system', [{text: systemPrompt}]),
       ...history.map(
         (msg: {role: 'user' | 'model'; content: {text: string}[]}) =>
           new Message(
