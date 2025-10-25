@@ -1,15 +1,24 @@
+"use client";
+
 import Logo from '@/components/logo';
 import { Button } from './ui/button';
 import { Github, Twitter, Linkedin } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="border-t border-border/40 py-10 bg-muted/30">
       <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 text-center md:flex-row md:px-6 md:text-left">
         <div className="flex flex-col items-center md:items-start gap-4">
           <Logo />
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} PentGuin Security. <br /> Todos los derechos reservados.
+            © {year} PentGuin Security. <br /> Todos los derechos reservados.
           </p>
         </div>
         <div className="flex items-center gap-4">
