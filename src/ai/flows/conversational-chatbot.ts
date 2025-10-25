@@ -55,20 +55,21 @@ const conversationalChatbotFlow = ai.defineFlow(
 Your goal is to have a natural conversation, answer user questions, and be a helpful resource.
 Keep responses concise, friendly, and use markdown for formatting if needed.`;
 
-    const messages = [
-      new Message('system', [{text: systemPrompt}]),
-      ...history.map(
-        (msg: {role: 'user' | 'model'; content: {text: string}[]}) =>
-          new Message(
-            msg.role,
-            msg.content.map(c => ({text: c.text}))
-          )
-      ),
-      new Message('user', [{text: question}]),
+    // Construct the message history directly as an array of Part objects
+    const messages: Part[] = [
+      {text: systemPrompt},
+      ...history.flatMap(msg => msg.content.map(c => (msg.role === 'user' ? {user: c} : {model: c}))),
+      {text: `\n\nUser Question: ${question}`},
     ];
 
+    const fullHistory = history.map(msg => new Message(msg.role, msg.content));
+
     const {output} = await ai.generate({
-      prompt: messages,
+      prompt: [
+        new Message('system', [{text: systemPrompt}]),
+        ...fullHistory,
+        new Message('user', [{text: question}]),
+      ],
       output: {
         schema: ConversationalChatbotOutputSchema,
       },
