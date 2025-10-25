@@ -44,9 +44,13 @@ export default function Chatbot() {
     setIsLoading(true);
 
     try {
-      const history = newMessages.map(msg => `${msg.sender}: ${msg.text}`).join('\n');
+      const historyForApi = newMessages.slice(1, -1).map(msg => ({
+          role: msg.sender === 'user' ? 'user' : ('model' as 'user' | 'model'),
+          content: [{text: msg.text}],
+      }));
+
       const botResponse = await conversationalChatbot({
-        history: history,
+        history: historyForApi,
         question: currentInput
       });
 

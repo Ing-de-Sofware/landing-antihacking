@@ -11,40 +11,38 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {Message, Part} from 'genkit';
+import {z} from 'zod';
 
 const ConversationalChatbotInputSchema = z.object({
-  history: z.string().describe('The conversation history between the user and the bot.'),
+  history: z
+    .array(
+      z.object({
+        role: z.enum(['user', 'model']),
+        content: z.array(z.object({text: z.string()})),
+      })
+    )
+    .describe('The conversation history between the user and the bot.'),
   question: z.string().describe('The new question from the user.'),
 });
 
-export type ConversationalChatbotInput = z.infer<typeof ConversationalChatbotInputSchema>;
+export type ConversationalChatbotInput = z.infer<
+  typeof ConversationalChatbotInputSchema
+>;
 
 const ConversationalChatbotOutputSchema = z.object({
-  answer: z.string().describe('The chatbot\'s response to the question.'),
+  answer: z.string().describe("The chatbot's response to the question."),
 });
 
-export type ConversationalChatbotOutput = z.infer<typeof ConversationalChatbotOutputSchema>;
+export type ConversationalChatbotOutput = z.infer<
+  typeof ConversationalChatbotOutputSchema
+>;
 
-export async function conversationalChatbot(input: ConversationalChatbotInput): Promise<ConversationalChatbotOutput> {
+export async function conversationalChatbot(
+  input: ConversationalChatbotInput
+): Promise<ConversationalChatbotOutput> {
   return conversationalChatbotFlow(input);
 }
-
-const conversationalChatbotPrompt = ai.definePrompt({
-  name: 'conversationalChatbotPrompt',
-  input: {schema: ConversationalChatbotInputSchema},
-  output: {schema: ConversationalChatbotOutputSchema},
-  prompt: `You are a friendly and helpful AI assistant for CyberGuard, a cybersecurity consulting firm.
-Your goal is to have a natural conversation, answer user questions, and be a helpful resource.
-Keep responses concise, friendly, and use markdown for formatting if needed.
-
-Here is the conversation history:
-{{{history}}}
-
-Based on the history, answer the user's latest question:
-User: {{{question}}}
-`,
-});
 
 const conversationalChatbotFlow = ai.defineFlow(
   {
@@ -52,8 +50,34 @@ const conversationalChatbotFlow = ai.defineFlow(
     inputSchema: ConversationalChatbotInputSchema,
     outputSchema: ConversationalChatbotOutputSchema,
   },
-  async input => {
-    const {output} = await conversationalChatbotPrompt(input);
+  async ({history, question}) => {
+    const systemPrompt = `You are a friendly and helpful AI assistant for CyberGuard, a cybersecurity consulting firm.
+Your goal is to have a natural conversation, answer user questions, and be a helpful resource.
+Keep responses concise, friendly, and use markdown for formatting if needed.`;
+
+    const messages = [
+      new Message('system', [
+        {
+          text: systemPrompt,
+        },
+      ]),
+      ...history.map(
+        (msg: {role: 'user' | 'model'; content: {text: string}[]}) =>
+          new Message(
+            msg.role,
+            msg.content.map(c => ({text: c.text}))
+          )
+      ),
+      new Message('user', [{text: question}]),
+    ];
+
+    const {output} = await ai.generate({
+      prompt: messages,
+      output: {
+        schema: ConversationalChatbotOutputSchema,
+      },
+    });
+
     return output!;
   }
 );
