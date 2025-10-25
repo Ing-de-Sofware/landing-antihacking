@@ -21,6 +21,18 @@ const testimonials = [
         avatar: "https://picsum.photos/seed/sa/100/100",
         rating: 5,
         quote: "Como startup, la seguridad es clave para ganar la confianza de los clientes. PentGuin nos dio la tranquilidad que necesitábamos con un pentest increíblemente detallado y práctico."
+    },
+    {
+        name: "CISO, Global Finance",
+        avatar: "https://picsum.photos/seed/gf/100/100",
+        rating: 5,
+        quote: "La profundidad técnica y la claridad de sus informes son excepcionales. Nos ayudaron a priorizar y solucionar los hallazgos de manera efectiva, mejorando nuestra seguridad general."
+    },
+    {
+        name: "Lead Developer, DataSolutions",
+        avatar: "https://picsum.photos/seed/ds/100/100",
+        rating: 5,
+        quote: "Apreciamos su enfoque colaborativo. Se sintió como si fueran una extensión de nuestro propio equipo, trabajando juntos para fortalecer nuestra aplicación desde adentro hacia afuera."
     }
 ]
 
