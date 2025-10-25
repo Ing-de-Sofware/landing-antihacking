@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "team-lead",
+      "description": "A portrait of the team lead.",
+      "imageUrl": "https://images.unsplash.com/photo-1513759565286-20e9c5fad06b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBsZWFkZXJ8ZW58MHx8fHwxNzYxMzY0MTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person leader"
+    },
+    {
+      "id": "project-coordinator",
+      "description": "A portrait of the project coordinator.",
+      "imageUrl": "https://images.unsplash.com/photo-1584940121396-17ed95a72c29?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXJzb24lMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzYxMzUzODA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person professional"
+    },
+    {
+      "id": "security-specialist-1",
+      "description": "A portrait of a security specialist.",
+      "imageUrl": "https://images.unsplash.com/photo-1665174273418-d384296ac09a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBoYWNrZXJ8ZW58MHx8fHwxNzYxMzY0MTYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person hacker"
+    },
+    {
+      "id": "security-specialist-2",
+      "description": "A portrait of another security specialist.",
+      "imageUrl": "https://images.unsplash.com/photo-1499365094259-713ae26508c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjB0ZWNofGVufDB8fHx8MTc2MTMyMjY5Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person tech"
+    }
+  ]
 }
