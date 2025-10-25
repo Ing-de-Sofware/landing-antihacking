@@ -1,4 +1,4 @@
-# **App Name**: CyberGuard Consulting
+# **App Name**: PentGuin
 
 ## Core Features:
 
