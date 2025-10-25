@@ -9,7 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { useToast } from "@/hooks/use-toast";
 import { cn } from '@/lib/utils';
 import EmojiPicker from 'emoji-picker-react';
-import { Bot, Paperclip, Send, Smile, User } from 'lucide-react';
+import { Bot, Paperclip, Send, Smile, User, X } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
@@ -36,6 +36,12 @@ export default function Chatbot() {
   const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const focusRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // This prevents the browser from auto-focusing the input field and scrolling down.
+    focusRef.current?.focus();
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -112,6 +118,8 @@ export default function Chatbot() {
 
   return (
     <Card className="w-full shadow-2xl shadow-primary/10 border-border">
+      {/* This invisible div is used to programmatically grab focus and prevent scroll-on-load */}
+      <div ref={focusRef} tabIndex={-1} aria-hidden="true" className="sr-only"></div>
       <CardContent className="p-4">
         <div className="space-y-4 h-96 overflow-y-auto p-4 mb-4 rounded-lg bg-background">
           {messages.map((message, index) => (
