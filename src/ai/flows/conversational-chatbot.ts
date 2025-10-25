@@ -11,7 +11,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {Message, Part} from 'genkit';
+import {Message} from 'genkit';
 import {z} from 'zod';
 
 const ConversationalChatbotInputSchema = z.object({
@@ -55,13 +55,7 @@ const conversationalChatbotFlow = ai.defineFlow(
 Your goal is to have a natural conversation, answer user questions, and be a helpful resource.
 Keep responses concise, friendly, and use markdown for formatting if needed.`;
 
-    // Construct the message history directly as an array of Part objects
-    const messages: Part[] = [
-      {text: systemPrompt},
-      ...history.flatMap(msg => msg.content.map(c => (msg.role === 'user' ? {user: c} : {model: c}))),
-      {text: `\n\nUser Question: ${question}`},
-    ];
-
+    // Transform the history from the input schema to Genkit Message objects
     const fullHistory = history.map(msg => new Message(msg.role, msg.content));
 
     const {output} = await ai.generate({
