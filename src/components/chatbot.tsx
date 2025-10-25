@@ -5,14 +5,23 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useToast } from "@/hooks/use-toast";
 import { cn } from '@/lib/utils';
-import { Bot, Send, User } from 'lucide-react';
+import EmojiPicker from 'emoji-picker-react';
+import { Bot, Paperclip, Send, Smile, User } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+
+type Media = {
+  url: string;
+  contentType: string;
+};
 
 type Message = {
   sender: 'user' | 'bot';
   text: string;
+  media?: Media;
 };
 
 const initialBotMessage = "¡Hola! Soy el asistente de IA de PentGuin. ¿En qué puedo ayudarte hoy?";
@@ -23,8 +32,10 @@ export default function Chatbot() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [media, setMedia] = useState<Media | null>(null);
   const { toast } = useToast();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -32,26 +43,56 @@ export default function Chatbot() {
 
   useEffect(scrollToBottom, [messages]);
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setMedia({
+          url: base64String,
+          contentType: file.type,
+        });
+        toast({
+          title: "Imagen adjuntada",
+          description: "La imagen está lista para ser enviada.",
+        });
+      };
+      reader.readAsDataURL(file);
+    } else {
+        toast({
+            variant: "destructive",
+            title: "Archivo no válido",
+            description: "Por favor, selecciona un archivo de imagen.",
+        });
+    }
+  };
+
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim() || isLoading) return;
+    if ((!input.trim() && !media) || isLoading) return;
 
-    const userMessage: Message = { sender: 'user', text: input };
+    const userMessage: Message = { sender: 'user', text: input, media: media || undefined };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
+    
     const currentInput = input;
+    const currentMedia = media;
+
     setInput('');
+    setMedia(null);
     setIsLoading(true);
 
     try {
       const historyForApi = newMessages.slice(1, -1).map(msg => ({
           role: msg.sender === 'user' ? 'user' : ('model' as 'user' | 'model'),
-          content: [{text: msg.text}],
+          content: [{text: msg.text, ...(msg.media && {media: msg.media})}],
       }));
 
       const botResponse = await conversationalChatbot({
         history: historyForApi,
-        question: currentInput
+        question: currentInput,
+        ...(currentMedia && { media: currentMedia }),
       });
 
       setMessages((prev) => [...prev, { sender: 'bot', text: botResponse.answer }]);
@@ -94,7 +135,16 @@ export default function Chatbot() {
                     : 'bg-muted text-muted-foreground'
                 )}
               >
-                <p>{message.text}</p>
+                {message.media && (
+                  <Image
+                    src={message.media.url}
+                    alt="Imagen adjunta"
+                    width={200}
+                    height={200}
+                    className="rounded-md mb-2"
+                  />
+                )}
+                {message.text && <p>{message.text}</p>}
               </div>
               {message.sender === 'user' && (
                  <Avatar className="h-8 w-8 bg-muted border-2 border-muted">
@@ -119,7 +169,55 @@ export default function Chatbot() {
           )}
           <div ref={messagesEndRef} />
         </div>
+        
+        {media && (
+          <div className="p-2 mb-2 border rounded-md relative bg-muted">
+            <p className="text-sm text-muted-foreground mb-2">Imagen adjunta:</p>
+            <Image src={media.url} alt="Vista previa" width={80} height={80} className="rounded-md" />
+            <Button variant="ghost" size="icon" className="absolute top-0 right-0 h-6 w-6" onClick={() => setMedia(null)}>
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
+        
         <form onSubmit={handleSendMessage} className="flex gap-2">
+            <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className="hidden"
+                accept="image/*"
+            />
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            className="h-11 w-11 flex-shrink-0"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={isLoading}
+          >
+            <Paperclip className="h-5 w-5" />
+            <span className="sr-only">Adjuntar archivo</span>
+          </Button>
+
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                className="h-11 w-11 flex-shrink-0"
+                disabled={isLoading}
+              >
+                <Smile className="h-5 w-5" />
+                <span className="sr-only">Añadir emoji</span>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0 border-0">
+              <EmojiPicker onEmojiClick={(emojiObject) => setInput(input + emojiObject.emoji)} />
+            </PopoverContent>
+          </Popover>
+
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
