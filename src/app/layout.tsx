@@ -27,6 +27,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
+          <div tabIndex={-1} />
           {children}
           <Toaster />
         </ThemeProvider>
