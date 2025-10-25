@@ -22,7 +22,7 @@ export default function Header() {
         <Logo />
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="text-foreground/80 transition-colors hover:text-accent">
+            <a key={link.href} href={link.href} className="text-muted-foreground transition-colors hover:text-primary">
               {link.label}
             </a>
           ))}
@@ -48,7 +48,7 @@ export default function Header() {
           <div className={cn("fixed inset-x-4 top-20 z-50 grid grid-flow-row auto-rows-max overflow-auto p-6 shadow-lg rounded-lg bg-popover", "md:hidden animate-in slide-in-from-bottom-80")}>
               <nav className="grid gap-4">
                 {navLinks.map((link) => (
-                  <a key={link.href} href={link.href} className="text-lg font-medium hover:text-accent" onClick={() => setIsOpen(false)}>
+                  <a key={link.href} href={link.href} className="text-lg font-medium hover:text-primary" onClick={() => setIsOpen(false)}>
                     {link.label}
                   </a>
                 ))}
